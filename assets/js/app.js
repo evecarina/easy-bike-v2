@@ -66,36 +66,7 @@ const appMaps = {
 		}
 	},
 
-	//Lugares mas cercanos , con ejemplo de  developers.google.com
-	searchNearPlaces : function()
-	{
-		var service = new google.maps.places.PlacesService(appMaps.settings.googleMap);
-        service.nearbySearch({
-	          location: new google.maps.LatLng(appMaps.currentPosition.lat, appMaps.currentPosition.lng),
-	          radius: 3000,
-	          type: ['school']
-        }, processResults);
 
-        function processResults(results, status) {
-		    if (status === google.maps.places.PlacesServiceStatus.OK) {
-		      for (var i = 0; i < results.length; i++) {
-		        createMarker(results[i]);
-		      }
-		    }
-		 }
-		function createMarker(place) {
-	        var placeLoc = place.geometry.location;
-	        var marker = new google.maps.Marker({
-	          map: appMaps.settings.googleMap,
-	          position: place.geometry.location
-	        });
-	        infowindow = new google.maps.InfoWindow();
-	        google.maps.event.addListener(marker, 'click', function() {
-	          infowindow.setContent(place.name);
-	          infowindow.open(appMaps.settings.googleMap, this);
-	        });
-	    }
-	}
 }
 
 
